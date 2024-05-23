@@ -1,11 +1,1 @@
-Traceback (most recent call last):
-  File "/home/vsts/work/1/s/dependabot_alerts.py", line 64, in <module>
-    main()
-  File "/home/vsts/work/1/s/dependabot_alerts.py", line 34, in main
-    repos = get_repositories(ORG_NAME)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/vsts/work/1/s/dependabot_alerts.py", line 18, in get_repositories
-    response.raise_for_status()
-  File "/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/requests/models.py", line 1024, in raise_for_status
-    raise HTTPError(http_error_msg, response=self)
-requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://api.github.com/orgs/Somatus-inc/repos
+
