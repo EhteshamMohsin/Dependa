@@ -1,0 +1,4 @@
+  File "/home/vsts/work/1/s/dependabot_alerts.py", line 9
+    'Authorization': f'token {GITHUB_TOKEN},
+                     ^
+SyntaxError: unterminated f-string literal (detected at line 9)
