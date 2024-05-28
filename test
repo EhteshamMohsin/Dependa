@@ -1,5 +1,5 @@
  #!/bin/bash
-    ORG_NAME="Somatus-inc" 
+    ORG_NAME="SS" 
 
     if [ -z "$(TOKEN)" ]; then
       echo "Error: (TOKEN) environment variable is not set."
