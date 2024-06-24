@@ -1,0 +1,6 @@
+    for REPO in $REPOS; do
+      ALERTS=$(fetch_data "https://api.github.com/repos/${ORG_NAME}/${REPO}/dependabot/alerts?per_page=100")
+      if [[ $? -ne 0 ]]; then
+        echo "Error fetching alerts for repository: $REPO" >&2
+        continue
+      fi
