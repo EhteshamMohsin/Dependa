@@ -1,0 +1,33 @@
+trigger:
+- none
+pool:
+  name: aks-agent-pool
+steps:
+- script: |
+    #!/bin/bash
+    ORG="Somatus-inc"
+    REPO="cca-function"
+    # Output CSV file
+    OUTPUT_FILE="admins.csv"
+    get_admins() {
+      curl -s -H "Authorization: token $(TOKEN)" \
+        "https://api.github.com/repos/$ORG/$REPO/collaborators?per_page=100&page=2" | \
+        jq -r '.[] | select(.permissions.admin == true) | [.login, .html_url] | @csv'
+    }
+    # Check if jq is installed
+    if ! command -v jq &> /dev/null
+    then
+        echo "jq could not be found. Please install jq to run this script."
+        exit
+    fi
+    # Get the admins and save to CSV
+    echo "username,url" > "$OUTPUT_FILE"
+    get_admins >> "$OUTPUT_FILE"
+    # Print message
+    echo "Admins for the repository $ORG/$REPO have been saved to $OUTPUT_FILE."
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/admins.csv'
+    artifact: 'myArtifacts'
+    publishLocation: pipeline
+  displayName: 'Publish Artifacts'
